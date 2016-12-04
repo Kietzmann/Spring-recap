@@ -16,8 +16,12 @@ public class App {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
         App app = (App)context.getBean("app");
-        Event event = (Event) context.getBean("event");
-        app.logEvent(event);
+
+        Event event = context.getBean(Event.class);
+        app.logEvent(event, "Some event for 1");
+
+        event = context.getBean(Event.class);
+        app.logEvent(event, "Some event for 2");
 
     }
 
@@ -29,7 +33,9 @@ public class App {
     public App() {
     }
 
-    public void logEvent(Event event) {
+    public void logEvent(Event event, String msg) {
+        String message = msg.replaceAll(client.getId(), client.getFullName());
+        event.setMsg(message);
         eventLogger.logEvent(event);
     }
 

@@ -3,11 +3,15 @@ package com.yet.spring.core.beans;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by dmytro on 04.12.16.
  */
 public class Event {
+
+    private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
+
     private int id;
     private String msg;
     private Date date;
@@ -15,8 +19,17 @@ public class Event {
 
 
     public Event(Date date, DateFormat dateFormat) {
+        this.id = AUTO_ID.getAndIncrement();
         this.date = date;
         this.dateFormat = dateFormat;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getMsg() {
+        return msg;
     }
 
     public void setMsg(String msg) {
@@ -24,13 +37,16 @@ public class Event {
         id = ThreadLocalRandom.current().nextInt(0, 10000000);
     }
 
+    public Date getDate() {
+        return date;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
                 "id=" + id +
                 ", msg='" + msg + '\'' +
-                ", date=" + date +
-                ", dateFormat=" + dateFormat +
+                ", date=" + dateFormat.format(date) +
                 '}';
     }
 }

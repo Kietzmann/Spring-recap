@@ -15,13 +15,11 @@
         <constructor-arg>
             <bean class="java.util.Date" scope="prototype"/>
         </constructor-arg>
-        <constructor-arg>
-            <bean class="java.text.DateFormat" factory-method="getDateTimeInstance" scope="prototype"/>
-        </constructor-arg>
+        <constructor-arg ref="dateFormat"/>
     </bean>
     <bean id="logger" class="com.yet.spring.core.beans.FileEventLogger">
         <constructor-arg value="empty.txt" type="java.lang.String"/>
     </bean>
-
+    <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateInstance"/>
 
 </beans>
