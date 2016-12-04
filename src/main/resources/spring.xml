@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="client" class="com.yet.spring.core.beans.Client">
+        <constructor-arg index="0" value="1" type="long"/>
+        <constructor-arg index="1" value="John Smith" type="java.lang.String"/>
+    </bean>
+    <bean id="eventLogger" class="com.yet.spring.core.beans.ConsoleEventLogger"/>
+    <bean id="app" class="com.yet.spring.core.App">
+        <constructor-arg ref="client"/>
+        <constructor-arg ref="eventLogger"/>
+    </bean>
+    <bean id="event" class="com.yet.spring.core.beans.Event" scope="prototype">
+        <constructor-arg>
+            <bean class="java.util.Date" scope="prototype"/>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="java.text.DateFormat" factory-method="getDateTimeInstance" scope="prototype"/>
+        </constructor-arg>
+    </bean>
+    <bean id="logger" class="com.yet.spring.core.beans.FileEventLogger">
+        <constructor-arg value="empty.txt" type="java.lang.String"/>
+    </bean>
+
+
+</beans>
