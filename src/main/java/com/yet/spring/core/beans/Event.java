@@ -34,7 +34,6 @@ public class Event {
 
     public void setMsg(String msg) {
         this.msg = msg;
-        id = ThreadLocalRandom.current().nextInt(0, 10000000);
     }
 
     public Date getDate() {
@@ -43,10 +42,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event{" +
-                "id=" + id +
-                ", msg='" + msg + '\'' +
-                ", date=" + dateFormat.format(date) +
-                '}';
+        return "Event [id=" + id + ", msg=" + msg + ", date=" + dateFormat.format(date) + "]";
     }
+
 }

@@ -1,9 +1,12 @@
-package com.yet.spring.core.beans; /**
+package com.yet.spring.core.beans;
+
+/**
  * Created by dmytro on 04.12.16.
  */
 public class Client {
     private long id;
     private String fullName;
+    private String greeting;
 
     public Client(long id, String fullName) {
         this.id = id;
@@ -11,6 +14,14 @@ public class Client {
     }
 
     public Client() {
+    }
+
+    public String getGreeting() {
+        return greeting;
+    }
+
+    public void setGreeting(String greeting) {
+        this.greeting = greeting;
     }
 
     public String getId() {

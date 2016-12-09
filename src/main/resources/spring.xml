@@ -4,13 +4,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <import resource="loggers.xml"/>
     <bean id="client" class="com.yet.spring.core.beans.Client">
+        <property name="greeting" value="Hello, world!"/>
         <constructor-arg index="0" value="1" type="long"/>
         <constructor-arg index="1" value="John Smith" type="java.lang.String"/>
     </bean>
-    <bean id="eventLogger" class="com.yet.spring.core.loggers.ConsoleEventLogger"/>
     <bean id="app" class="com.yet.spring.core.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="eventLogger"/>
+        <constructor-arg ref="cacheFileEventLogger"/>
+        <constructor-arg>
+            <map>
+                <entry key="INFO" value-ref="consoleEventLogger"/>
+                <entry key="ERROR" value-ref="combinedEventLogger"/>
+            </map>
+        </constructor-arg>
     </bean>
     <bean id="event" class="com.yet.spring.core.beans.Event" scope="prototype">
         <constructor-arg>
