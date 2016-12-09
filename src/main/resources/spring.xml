@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans default-lazy-init="true" xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <import resource="loggers.xml"/>
     <bean id="client" class="com.yet.spring.core.beans.Client">
         <constructor-arg index="0" value="1" type="long"/>
         <constructor-arg index="1" value="John Smith" type="java.lang.String"/>
@@ -17,15 +18,5 @@
         </constructor-arg>
         <constructor-arg ref="dateFormat"/>
     </bean>
-    <bean id="logger" class="com.yet.spring.core.loggers.FileEventLogger">
-        <constructor-arg value="empty.txt" type="java.lang.String"/>
-    </bean>
     <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateInstance"/>
-    <bean id="fileEventLogger" class="com.yet.spring.core.loggers.FileEventLogger" init-method="init">
-        <constructor-arg value="target/events_log.txt"/>
-    </bean>
-    <bean id="cacheEventLogger" class="com.yet.spring.core.loggers.CacheFileEventLogger" destroy-method="destroy">
-        <constructor-arg value="target/events_log.txt"/>
-        <constructor-arg value="5"/>
-    </bean>
 </beans>
