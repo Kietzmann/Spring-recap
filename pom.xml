@@ -35,6 +35,11 @@
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
         </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>LATEST</version>
+        </dependency>
     </dependencies>
     <properties>
         <spring-version>4.3.4.RELEASE</spring-version>
